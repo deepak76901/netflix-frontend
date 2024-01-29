@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 function Header(props) {
   const navigate = useNavigate();
   return (
-    <div className="text-xl flex ">
+    <div className="text-xl flex justify-between">
       <div>
-        <img className="h-36 w-auto" src={logo} alt="Netflix Logo" />
+        <img className="h-24 w-auto" src={logo} alt="Netflix Logo" />
       </div>
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center  ">
         <button
           onClick={() => navigate(props.login ? "/login" : "/signup")}
-          className="bg-red-600 text-white px-5 py-2  my-2 rounded-md"
+          className="bg-red-600 mr-5 text-white px-5 py-2  my-2 rounded-md"
         >
           {props.login ? "Log in" : "Sign in"}
         </button>

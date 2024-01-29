@@ -15,7 +15,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // firebaseAuth is pointing to netflix-clone,which is exist in our firebase console
 export const firebaseAuth = getAuth(app)

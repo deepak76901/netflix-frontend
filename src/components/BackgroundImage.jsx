@@ -4,7 +4,7 @@ import backgroundImage from "../assets/login.jpg"
 function BackgroundImage() {
   return (
     <div className=''>
-        <img className='opacity-60' src={backgroundImage} alt="Background Image" />
+        <img className='opacity-40' src={backgroundImage} alt="Background Image" />
     </div>
   )
 }
