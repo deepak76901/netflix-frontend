@@ -37,12 +37,14 @@ export default function Login() {
         <div className="w-full">
           <Header login />
         </div>
-        <form className="flex flex-col w-1/3 mt-20 ">
-          <div className="flex justify-center items-center my-3">
+        <div></div>
+        <form className="flex flex-col w-1/3 mt-20 py-6 rounded-sm bg-zinc-950/60 ">
+         <div className="grid">
+         <div className="flex justify-center items-center my-3">
             <div className="text-3xl font-medium">Login Page</div>
           </div>
           <input
-            className="focus:outline-none text-black  text-xl my-1 px-2 py-1 rounded-sm"
+            className="focus:outline-none text-black  text-xl my-1 px-2 py-1 rounded-sm mx-5"
             type="email"
             placeholder="Email"
             name="email"
@@ -52,7 +54,7 @@ export default function Login() {
             }
           />
           <input
-            className="focus:outline-none text-black text-xl my-1 px-2 py-1 rounded-sm"
+            className="focus:outline-none text-black text-xl my-1 px-2 py-1 rounded-sm mx-5"
             type="password"
             placeholder="Password"
             name="password"
@@ -61,14 +63,15 @@ export default function Login() {
               setFormValues({ ...formValues, [e.target.name]: e.target.value })
             }
           />
-          <div className="flex justify-center items-center text-xl">
+          <div className="flex justify-center items-center text-xl opacity-100">
             <button
               onClick={handleLogIn}
-              className="bg-red-600 text-white px-6 py-2 rounded-sm mt-2"
+              className="bg-red-600  text-white px-6 py-2 rounded-sm my-2"
             >
               Login
             </button>
           </div>
+         </div>
         </form>
       </div>
     </div>
