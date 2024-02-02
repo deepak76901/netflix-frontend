@@ -10,7 +10,7 @@ function Player() {
       <div className="absolute top-1 left-3 hover:cursor-pointer text-white z-10 " >
         <BsArrowLeft onClick={() => navigate(-1)} className="h-10 w-auto" />
       </div>
-      <video className="h-screen w-screen" src={video} autoPlay controls muted loop></video>
+      <video className="h-screen w-screen" src={video} autoPlay controls loop></video>
     </div>
   );
 }

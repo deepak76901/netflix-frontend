@@ -32,7 +32,7 @@ function Navbar({isScrolled}) {
 
   return (
     <>
-      <nav className={`flex w-full fixed h-16 py-2 items-center ${isScrolled ? "bg-zinc-900" : "font-semibold"}`}>
+      <nav className={`flex w-full fixed h-16 py-2 items-center z-30 ${isScrolled ? "bg-zinc-900" : "font-semibold"}`}>
         <div>
           <img src={logo} alt="Netflix" className="h-20 w-auto mx-5" />
         </div>

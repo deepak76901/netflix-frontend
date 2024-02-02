@@ -18,7 +18,6 @@ export const getGenres = createAsyncThunk("/netflix/genre", async () => {
     const {
       data: { genres },
     } = await axios.get(`${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
-    console.log(genres);
     return genres;
   } catch (error) {
     console.log(error.message);
@@ -70,6 +69,20 @@ export const fetchMovies = createAsyncThunk(
   }
 );
 
+export const fetchDataByGenre = createAsyncThunk(
+  "/netflix/moviesByGenre",
+  ({ genre, type }, thunkApi) => {
+    const {
+      netflix: { genres },
+    } = thunkApi.getState();
+    return getRawData(
+      `${TMDB_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genre}`,
+      genres
+    );
+  }
+);
+// 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc'
+
 // Reducers
 const NetflixSlice = createSlice({
   name: "Netflix",
@@ -82,6 +95,9 @@ const NetflixSlice = createSlice({
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
       state.movies = action.payload;
     });
+    builder.addCase(fetchDataByGenre.fulfilled, (state,action) => {
+      state.movies = action.payload
+    })
   },
 });
 
