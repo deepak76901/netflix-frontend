@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import video from "../assets/trailer.mp4";
 import { useNavigate } from "react-router-dom";
 import { IoPlayCircleSharp } from "react-icons/io5";
-import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
-import { BsCheck } from "react-icons/bs";
+import { BiSolidLike ,BiSolidDislike } from "react-icons/bi";
+import { ImCross } from "react-icons/im";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
-import axios from "axios"
+import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase.config";
+import { useDispatch } from "react-redux";
+import { removeFromLikedMovies } from "../store";
 
 function Card({ movieData, isLiked = false }) {
   const [isHovered, setIsHovered] = useState(false);
   const [email, setEmail] = useState(undefined);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) setEmail(currentUser.email);
@@ -21,26 +24,29 @@ function Card({ movieData, isLiked = false }) {
   });
 
   const addToList = async () => {
-      try {
-        await axios.post("http://localhost:8080/api/user/add",{email,data:movieData})
-        console.log(movieData)
-      } catch (error) {
-        console.log(error)
-      }
-  }
+    try {
+      await axios.post("http://localhost:8080/api/user/add", {
+        email,
+        data: movieData,
+      });
+      console.log(movieData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <div className="h-32 w-44 cursor-pointer relative bg-zinc-800 ">
+    <div className="h-28 w-44 cursor-pointer relative bg-black ">
       <img
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         src={`https://image.tmdb.org/t/p/w400${movieData.image}`}
         alt="Image"
-        className="h-32 rounded-md w-auto hover:translate-x-10"
+        className="h-32 rounded-lg w-auto hover:translate-x-10"
       />
       {isHovered && (
         <div
-          className="w-48 z-10 max-w-64 flex flex-col transition scale-110 ease-in-out delay-150 duration-300 rounded-lg absolute -top-10 -left-2 bg-zinc-800 p-2 "
+          className="w-48 z-10 max-w-64 flex flex-col hover:transition hover:scale-110 hover:ease-in-out  hover:duration-400  rounded-lg absolute -top-10 -left-2 bg-zinc-800 p-2 "
           onMouseEnter={() => {
             setIsHovered(true);
           }}
@@ -63,31 +69,36 @@ function Card({ movieData, isLiked = false }) {
                 <IoPlayCircleSharp
                   title="play"
                   onClick={() => navigate("/player")}
-                  className="h-5 w-auto hover:text-red-400"
+                  className="h-6 w-auto hover:text-red-400"
                 />
-                <FaThumbsUp
+                <BiSolidLike
                   title="Like"
-                  className="h-4 w-auto hover:text-red-400"
+                  className="h-6 w-auto hover:text-red-400"
                 />
-                <FaThumbsDown
+                <BiSolidDislike
                   title="Dislike"
-                  className="h-4 w-auto hover:text-red-400"
+                  className="h-6 w-auto hover:text-red-400"
                 />
                 {isLiked ? (
-                  <BsCheck
-                    title="Remove from checked"
-                    className="h-4 w-auto hover:text-red-400"
+                  <ImCross
+                    title="Remove from Playlist"
+                    className="h-5 w-auto hover:text-red-400"
+                    onClick={() =>
+                      dispatch(
+                        removeFromLikedMovies({ movieId: movieData.id, email })
+                      )
+                    }
                   />
                 ) : (
                   <AiOutlinePlus
                     title="Add to My List"
-                    className="h-4 w-auto hover:text-red-400"
+                    className="h-6 w-auto hover:text-red-400 "
                     onClick={addToList}
                   />
                 )}
                 <BiChevronDown
                   title="More Info"
-                  className="h-4 w-auto hover:text-red-400"
+                  className="h-6 w-auto hover:text-red-400"
                 />
               </div>
             </div>

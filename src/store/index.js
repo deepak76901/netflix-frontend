@@ -69,6 +69,30 @@ export const fetchMovies = createAsyncThunk(
   }
 );
 
+export const fetchLikedMovies = createAsyncThunk(
+  "/netflix/liked",
+  async (email) => {
+    const {
+      data: { movies },
+    } = await axios.get(`http://localhost:8080/api/user/likedMovies/${email}`);
+    return movies;
+  }
+);
+
+export const removeFromLikedMovies = createAsyncThunk(
+  "/netflix/remove",
+  async ({email, movieId}) => {
+    const {
+      data: { movies },
+    } = await axios.put("http://localhost:8080/api/user/delete", {
+      email,
+      movieId,
+    });
+    // I was faced to much issue when trying to delete movies from list,Then later is notice that is didnot return the movies array
+    return movies;
+  }
+);
+
 export const fetchDataByGenre = createAsyncThunk(
   "/netflix/moviesByGenre",
   ({ genre, type }, thunkApi) => {
@@ -95,9 +119,15 @@ const NetflixSlice = createSlice({
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
       state.movies = action.payload;
     });
-    builder.addCase(fetchDataByGenre.fulfilled, (state,action) => {
-      state.movies = action.payload
-    })
+    builder.addCase(fetchDataByGenre.fulfilled, (state, action) => {
+      state.movies = action.payload;
+    });
+    builder.addCase(fetchLikedMovies.fulfilled, (state, action) => {
+      state.movies = action.payload;
+    });
+    builder.addCase(removeFromLikedMovies.fulfilled, (state, action) => {
+      state.movies = action.payload;
+    });
   },
 });
 
