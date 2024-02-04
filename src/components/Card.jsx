@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import video from "../assets/trailer.mp4";
 import { useNavigate } from "react-router-dom";
 import { IoPlayCircleSharp } from "react-icons/io5";
-import { BiSolidLike ,BiSolidDislike } from "react-icons/bi";
+import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
@@ -52,14 +52,16 @@ function Card({ movieData, isLiked = false }) {
           }}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <video
-            className="transition duration-300 rounded-lg"
-            src={<iframe width="560" height="315" src="https://www.youtube.com/embed/l5OAxkuq850?si=IFG0XRG_6mwulJge" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>}
-            autoPlay
-            loop
-            muted
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/l5OAxkuq850?si=IFG0XRG_6mwulJge"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
             onClick={() => navigate("/player")}
-          />
+          ></iframe>
           <div className="h-24 max-h-24 w-auto mx-2 static z-10 bg-zinc-800 flex  flex-col overflow-hidden">
             <h3 onClick={() => navigate("/player")} className="my-1 text-sm">
               {movieData.name}
