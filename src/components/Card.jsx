@@ -52,16 +52,12 @@ function Card({ movieData, isLiked = false }) {
           }}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/l5OAxkuq850?si=IFG0XRG_6mwulJge"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+          <img
+            src={`https://image.tmdb.org/t/p/w400${movieData.image}`}
+            alt="Image"
+            className="h-24 rounded-lg w-auto "
             onClick={() => navigate("/player")}
-          ></iframe>
+          />
           <div className="h-24 max-h-24 w-auto mx-2 static z-10 bg-zinc-800 flex  flex-col overflow-hidden">
             <h3 onClick={() => navigate("/player")} className="my-1 text-sm">
               {movieData.name}

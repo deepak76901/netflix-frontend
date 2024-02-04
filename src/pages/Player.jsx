@@ -8,17 +8,14 @@ function Player() {
   return (
     <div className="h-screen relative">
       <div className="absolute top-1 left-3 hover:cursor-pointer text-white z-10 ">
-        <BsArrowLeft onClick={() => navigate(-1)} className="h-10 w-auto" />
+        <BsArrowLeft onClick={() => navigate(-1)} className="h-10 w-auto mt-14" />
       </div>
       <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/l5OAxkuq850?si=IFG0XRG_6mwulJge"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+        className="h-screen w-screen"
+        src="https://www.youtube.com/embed/l5OAxkuq850?si=ER0Vvz8cBsS3Vcil&amp;controls=0"
+        frameborder="0"
+        allow="autoplay"
+      ></iframe>
     </div>
   );
 }

@@ -11,7 +11,7 @@ function CardSlider({ title, data }) {
         {title}
       </h3>
       <div
-        className="flex overflow-x-auto h-72 relative"
+        className="flex overflow-x-auto h-72 relative overflow-hidden"
         // onMouseEnter={() => setShowControls(true)}
         // onMouseLeave={() => setShowControls(false)}
       >
