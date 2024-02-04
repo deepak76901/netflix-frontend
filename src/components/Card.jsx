@@ -54,7 +54,7 @@ function Card({ movieData, isLiked = false }) {
         >
           <video
             className="transition duration-300 rounded-lg"
-            src={video}
+            src="https://www.youtube.com/watch?v=l5OAxkuq850&t=6s"
             autoPlay
             loop
             muted
