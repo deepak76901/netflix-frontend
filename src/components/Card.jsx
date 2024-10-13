@@ -8,7 +8,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase.config";
 import { useDispatch } from "react-redux";
 import { removeFromLikedMovies } from "../store";
 
@@ -18,10 +17,6 @@ function Card({ movieData, isLiked = false }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) setEmail(currentUser.email);
-    else navigate("/");
-  });
 
   const addToList = async () => {
     try {

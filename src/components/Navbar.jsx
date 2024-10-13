@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase.config";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { FaPowerOff, FaSearch } from "react-icons/fa";
@@ -18,17 +16,6 @@ function Navbar({isScrolled}) {
     { name: "My List", link: "/my-list" },
   ];
 
-  const handleSignOut = async () => {
-    try {
-      const data = await signOut(firebaseAuth);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  onAuthStateChanged(firebaseAuth,(currentUser) =>{
-    if(!currentUser) navigate("/login")
-  })
 
   return (
     <>
@@ -65,13 +52,7 @@ function Navbar({isScrolled}) {
               if (!inputHover) setShowSearch(false);
             }}
           >
-            <FaSearch />
-          </button>
-          <button
-            className="bg-red-600 text-white text-xl px-5 py-1 rounded-sm"
-            onClick={handleSignOut}
-          >
-            <FaPowerOff />
+            <FaSearch size={20} />
           </button>
         </div>
       </nav>

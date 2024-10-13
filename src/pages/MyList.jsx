@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchLikedMovies, fetchMovies, getGenres } from "../store/index.js";
 import Navbar from "../components/Navbar.jsx";
 import Card from "../components/Card.jsx";
-import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase.config.js";
 import { useNavigate } from "react-router-dom";
 
 export default function MyList() {
@@ -16,11 +14,6 @@ export default function MyList() {
   const navigate = useNavigate();
 
   const movies = useSelector((state) => state.netflix.movies);
-
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) setEmail(currentUser.email);
-    else navigate("/");
-  });
 
   useEffect(() => {
     if (email) {
